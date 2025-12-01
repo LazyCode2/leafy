@@ -1,57 +1,75 @@
-# Leafy
+## 🛠️ Leafy: Minimal Static Site Generator
 
-Leafy is a minimal static site generator written in Go. It allows you to quickly generate a basic HTML site from Markdown content and a template.
+**Leafy** is a minimal static site generator written in **Go**. It enables the rapid creation of a basic HTML site by processing Markdown content against an HTML template.
 
----
+-----
 
-## Requirements
+## 📋 Requirements
 
-- Go 1.20+ installed on your system
-- Basic knowledge of Markdown and HTML + .tmpl 
+  * **Go 1.20+** installed on your system.
+  * Basic knowledge of **Markdown** and **HTML/Go Templates** (`.tmpl`).
 
----
+-----
 
-## Install
+## 🚀 Installation
+
+Install the latest version of the Leafy binary:
+
 ```bash
-go install github.com/LazyCode2/leafy@latest  
+go install github.com/LazyCode2/leafy@latest
 ```
-## How It Works
 
-1. **Initialize a project structure**  
-   Run the following command to create the folder structure:
+-----
 
-   ```bash
-   leafy --init
-   ```
+## ⚙️ Usage Guide
 
-it will create 
-*   ├── content
-*   ├── output
-*   └── template
+### 1\. Initialize Project Structure
 
-2. Add your content
-   Put Markdown files inside the content folder (content/content.md) !Only one for now.
+Run the following command in your desired project directory to create the necessary structure:
 
-3. Add a template
-   Put a basic HTML template inside the template folder (e.g., template/default.tmpl) with a placeholder {{ .Data }} where the Markdown content will be inserted.
+```bash
+leafy --init
+```
 
-   **Example** : 
-   ```html
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Leafy</title>
-    </head>
-    <body>
-        {{ .Data }}
-    </body>
-    </html>
-    ```
+This command creates the following required directory structure:
 
-4. Build the site 
-   Generate your HTML site with:
-   ```bash
-   leafy --build
-   ```
+  * `├── content/` (For Markdown files)
+  * `├── output/` (Generated HTML site destination)
+  * `└── template/` (For Go template files)
 
+### 2\. Add Content
 
+Place your Markdown source file in the `content` folder.
+
+  * **Note:** The current version supports **only one Markdown file** in `content/content.md`.
+
+### 3\. Define Template
+
+Create your HTML template file inside the `template` folder (e.g., `template/default.tmpl`).
+
+The template **must** include the `{{ .Data }}` placeholder where the processed Markdown content will be inserted.
+
+**Example Template** (`template/default.tmpl`):
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ .Title }}</title>
+</head>
+<body>
+    <h1>My Static Site</h1>
+    {{ .Data }} 
+</body>
+</html>
+```
+
+### 4\. Build Site
+
+Generate the final HTML file by executing the build command:
+
+```bash
+leafy --build
+```
+
+The resulting HTML file (`index.html`) will be placed in the **`output/`** directory.
