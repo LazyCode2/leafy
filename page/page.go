@@ -81,5 +81,6 @@ func GenaratePage(contentPath string, templatePath string) {
 	if err != nil {
 		log.Fatalf("template execute failed: %v", err)
 	}
-	fmt.Println("✔ Generated output/index.html")
+	fmt.Println("✔ Generated output/" + filename + "html")
 }
+
