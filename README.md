@@ -32,16 +32,22 @@ leafy --init
 ```
 
 This command creates the following required directory structure:
-
-  * `├── content/` (For Markdown files)
-  * `├── output/` (Generated HTML site destination)
-  * `└── template/` (For Go template files)
+```
+  ├── content/ (For Markdown files)
+  ├── output/ (Generated HTML site destination)
+  └── template/ (For Go template files)
+```
 
 ### 2\. Add Content
 
 Place your Markdown source file in the `content` folder.
-
-  * **Note:** The current version supports **only one Markdown file** in `content/content.md`.
+📂 Example Content Folder
+```
+content/
+├── _index.md       # Homepage content
+├── about.md        # Example page
+└── contact.md      # Another example page
+```
 
 ### 3\. Define Template
 
