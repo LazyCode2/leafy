@@ -23,8 +23,26 @@ func main() {
 	if *initFlag {
 		BuildNewStructure()
 	} else if *buildFlag {
-		fmt.Println("Building site...")
-		page.GenaratePage("content/content.md",cfg.TemplatePath)
+	    fmt.Println("Building site...")
+	    page.GenarateIndexPage(cfg.ContentDir, cfg.TemplatePath)
+
+	    files, err := os.ReadDir(cfg.ContentDir)
+	    if err != nil {
+	        fmt.Println("Failed to read content directory:", err)
+	        return
+	    }
+
+	    for _, f := range files {
+	        if f.IsDir() {
+	            continue // Skip directories
+	        }
+	        name := f.Name()
+	        if name == "_index.md" || filepath.Ext(name) != ".md" {
+	            continue // Skip _index.md and non-markdown files
+	        }
+	        // Generate a page for each markdown file
+	        page.GenaratePage(filepath.Join(cfg.ContentDir, name), cfg.TemplatePath)
+		}
 	} else {
 		fmt.Println("No flag provided. \nUse leafy --build or --init")
 	}
@@ -51,6 +69,7 @@ func BuildNewStructure() {
 	// Creating default config.yaml
 	configContent := `title: "Hello world"
 template_path: "template/default.tmpl"
+content_dir: "content/"
 `
 	configPath := "config.yaml"
 	err := os.WriteFile(configPath, []byte(configContent), 0644)
