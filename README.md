@@ -1,8 +1,12 @@
+
 ## 🛠️ Leafy: Minimal Static Site Generator
 
-**Leafy** is a minimal static site generator written in **Go**. It enables the rapid creation of a basic HTML site by processing Markdown content against an HTML template.
+<img width="54" height="54" alt="image" src="https://github.com/user-attachments/assets/81833a3e-8755-46b4-aa5f-84eddc4065df" />
+
+  **Leafy** is a minimal static site generator written in **Go**. It enables the rapid creation of a basic HTML site by processing Markdown content against an HTML template.
 
 -----
+
 
 ## 📋 Requirements
 
