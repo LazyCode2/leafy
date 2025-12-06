@@ -1,4 +1,4 @@
-module github.com/LazyCode2/leafy/v2
+module github.com/LazyCode2/leafy
 
 go 1.25.4
 
