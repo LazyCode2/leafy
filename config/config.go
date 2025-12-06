@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Title        string `yaml:"title"`
 	TemplatePath string `yaml:"template_path"`
+	ContentDir	 string `yaml:"content_dir"`
 }
 
 func LoadConfig(path string) (*Config, error) {
