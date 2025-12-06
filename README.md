@@ -16,7 +16,7 @@
 Install the latest version of the Leafy binary:
 
 ```bash
-go install github.com/LazyCode2/leafy@v0.2.1
+go install github.com/LazyCode2/leafy@latest
 ```
 
 -----
