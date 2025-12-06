@@ -8,7 +8,7 @@ import (
 )
 
 func GenarateHTMLbody(contentPath string) []byte {
-	content := parse.GetContent(contentPath)
+	content , _ := parse.GetContent(contentPath)
 
 	generatedHTML := markdown.ToHTML(content, nil, nil)
 	if generatedHTML == nil{
