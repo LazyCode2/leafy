@@ -17,6 +17,39 @@ type PageData struct {
 
 }
 
+func GenarateIndexPage(contentDir string, templatePath string) {
+    indexPath := contentDir + "/_index.md"
+
+    if _, err := os.Stat(indexPath); os.IsNotExist(err) {
+        log.Fatalf("❌ No _index.md found in %s", contentDir)
+        return
+    }
+
+   
+    tmpl := parse.GetTemplate(templatePath)  // load template
+    genaratedHTML := genarate.GenarateHTMLbody(indexPath)
+
+    data := PageData{
+        Title: template.HTML(GetTitle()),
+        Data:  template.HTML(genaratedHTML),
+    }
+
+    os.MkdirAll("output", os.ModePerm)
+    outFile, err := os.Create("output/index.html")
+    if err != nil {
+        log.Fatalf("❌ cannot create output file: %v", err)
+    }
+    defer outFile.Close()
+
+    err = tmpl.Execute(outFile, data)
+    if err != nil {
+        log.Fatalf("❌ template execute failed: %v", err)
+    }
+
+    fmt.Println("✔ Generated output/index.html from _index.md")
+}
+
+
 func GetTitle() string {
 	cfg, err := config.LoadConfig("config.yaml")
 	if err != nil {
@@ -34,9 +67,13 @@ func GenaratePage(contentPath string, templatePath string) {
 		Data: template.HTML(genaratedHTML),
 	}
 
-	outFile, err := os.Create("output/index.html")
+	//Parsing filename to output the html file
+	//according to it's markdown name
+	_ , filename := parse.GetContent(contentPath)
+
+	outFile, err := os.Create("output/" + filename + ".html")
 	if err != nil {
-		log.Fatalf("cannot create output file: %v", err)
+	    log.Fatalf("cannot create output file: %v", err)
 	}
 	defer outFile.Close()
 	err = tmpl.Execute(outFile, data)
