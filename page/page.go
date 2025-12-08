@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/LazyCode2/leafy/config"
 	"github.com/LazyCode2/leafy/genarate"
@@ -71,6 +72,9 @@ func GenaratePage(contentPath string, templatePath string) {
 	//according to it's markdown name
 	_ , filename := parse.GetContent(contentPath)
 
+	//Trim the .md extension
+	filename = strings.TrimSuffix(filename,".md") 
+
 	outFile, err := os.Create("output/" + filename + ".html")
 	if err != nil {
 	    log.Fatalf("cannot create output file: %v", err)
@@ -81,6 +85,5 @@ func GenaratePage(contentPath string, templatePath string) {
 	if err != nil {
 		log.Fatalf("template execute failed: %v", err)
 	}
-	fmt.Println("✔ Generated output/" + filename + "html")
+	fmt.Println("✔ Generated output/" + filename + ".html")
 }
-
