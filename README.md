@@ -77,16 +77,12 @@ The template **must** include the `{{ .Data }}` placeholder where the processed 
 **Example Index Template** (`template/index.tmpl`):
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ .Title }}</title>
-</head>
-<body>
-    <h1>My Static Site</h1>
-    {{ .Data }} 
-</body>
-</html>
+<h1>{{ .Title }}</h1>
+<div>
+  {{ range .Posts }}
+    <p><a href="{{ .URL }}">{{ .Title }}</a></p>
+  {{ end }}
+</div>
 ```
 
 ### 4\. Build Site
