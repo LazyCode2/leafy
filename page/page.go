@@ -11,26 +11,21 @@ import (
 	"github.com/LazyCode2/leafy/genarate"
 	"github.com/LazyCode2/leafy/parse"
 )
-
 // Struct for each blog
 type BlogPost struct {
     Title string
     URL   string
 }
-
 // Struct for index page
 type IndexPageData struct {
 	Title template.HTML
 	Data  template.HTML
 	Posts []BlogPost
 }
-
 // Struct for content page
 type PageData struct {
 	Title template.HTML
 	Data  template.HTML
-	
-
 }
 
 func GetAllPosts(contentDir string) []BlogPost {
@@ -54,7 +49,6 @@ func GetAllPosts(contentDir string) []BlogPost {
 
     return posts
 }
-
 
 func GenarateIndexPage(contentDir string, templatePath string) {
     indexPath := contentDir + "/_index.md"
