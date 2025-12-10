@@ -15,33 +15,34 @@ func main() {
 	initFlag := flag.Bool("init", false, "Initialize project structure")
 	flag.Parse()
 
-	cfg , err := config.LoadConfig("config.yaml")
-	if err != nil {
-		fmt.Println("Failed to load config")
-	}
-
 	if *initFlag {
 		BuildNewStructure()
 	} else if *buildFlag {
-	    fmt.Println("Building site...")
-	    page.GenarateIndexPage(cfg.ContentDir, cfg.TemplatePath)
+		//Load config for site
+		cfg, err := config.LoadConfig("config.yaml")
+		if err != nil {
+			fmt.Println("Failed to load config")
+		}
 
-	    files, err := os.ReadDir(cfg.ContentDir)
-	    if err != nil {
-	        fmt.Println("Failed to read content directory:", err)
-	        return
-	    }
+		fmt.Println("Building site...")
+		page.GenarateIndexPage(cfg.ContentDir, cfg.TemplatePath)
 
-	    for _, f := range files {
-	        if f.IsDir() {
-	            continue // Skip directories
-	        }
-	        name := f.Name()
-	        if name == "_index.md" || filepath.Ext(name) != ".md" {
-	            continue // Skip _index.md and non-markdown files
-	        }
-	        // Generate a page for each markdown file
-	        page.GenaratePage(filepath.Join(cfg.ContentDir, name), cfg.TemplatePath)
+		files, err := os.ReadDir(cfg.ContentDir)
+		if err != nil {
+			fmt.Println("Failed to read content directory:", err)
+			return
+		}
+
+		for _, f := range files {
+			if f.IsDir() {
+				continue // Skip directories
+			}
+			name := f.Name()
+			if name == "_index.md" || filepath.Ext(name) != ".md" {
+				continue // Skip _index.md and non-markdown files
+			}
+			// Generate a page for each markdown file
+			page.GenaratePage(filepath.Join(cfg.ContentDir, name), cfg.TemplatePath)
 		}
 	} else {
 		fmt.Println("No flag provided. \nUse leafy --build or --init")
@@ -100,4 +101,3 @@ content_dir: "content/"
 
 	fmt.Println("Project structure initialized!")
 }
-
