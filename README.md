@@ -74,6 +74,21 @@ The template **must** include the `{{ .Data }}` placeholder where the processed 
 </html>
 ```
 
+**Example Index Template** (`template/index.tmpl`):
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ .Title }}</title>
+</head>
+<body>
+    <h1>My Static Site</h1>
+    {{ .Data }} 
+</body>
+</html>
+```
+
 ### 4\. Build Site
 
 Generate the final HTML file by executing the build command:
