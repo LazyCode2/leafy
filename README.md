@@ -1,12 +1,16 @@
+<div align="center">
 
-## 🛠️ Leafy: Minimal Static Site Generator
+  <img src="https://github.com/user-attachments/assets/81833a3e-8755-46b4-aa5f-84eddc4065df" 
+       alt="Leafy Logo" width="80" height="80"/>
 
-<img width="54" height="54" alt="image" src="https://github.com/user-attachments/assets/81833a3e-8755-46b4-aa5f-84eddc4065df" />
+  <h1>🌿 Leafy: Minimal Static Site Generator</h1>
 
-  **Leafy** is a minimal static site generator written in **Go**. It enables the rapid creation of a basic HTML site by processing Markdown content against an HTML template.
-
------
-
+  <p><strong>Leafy</strong> is a minimal static site generator written in <strong>Go</strong>.  
+  It helps you quickly build clean HTML sites using Markdown + Go Templates.</p>
+  <p>
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=LazyCode2.leafy" alt="visits"/>
+  </p>
+</div>
 
 ## 📋 Requirements
 
